@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./script.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Space+Grotesk:wght@400;500;600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;height:100%}
+  .cd-num{font-variant-numeric:tabular-nums}
+</style>
+</helmet>
+
+<div data-screen-label="Coming Soon" style="background:#f6f2ea;min-height:100vh;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;font-family:'Newsreader',serif">
+<div style="width:100%;max-width:1440px;flex:1;box-sizing:border-box;padding:64px clamp(32px,6vw,96px);display:flex;flex-direction:column">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="./logo.png" alt="Laite.AI" style="height:26px;width:auto" />
+      <span style="font:600 16px 'Space Grotesk',sans-serif;letter-spacing:.04em;color:#181614">LAITE.AI</span>
+    </div>
+    <div style="font:500 13px 'Space Grotesk',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#a0784f">Launching soon</div>
+  </div>
+
+  <div style="flex:1;display:flex;align-items:center;gap:96px;flex-wrap:wrap;padding:48px 0">
+    <div style="display:flex;flex-direction:column;gap:28px;max-width:600px">
+      <h1 style="margin:0;font:400 64px/1.18 'Newsreader',serif;color:#181614;font-style:italic">A new chapter — our first product is almost here.</h1>
+      <p style="margin:0;font:400 19px/1.7 'Public Sans',sans-serif;color:#57524a;max-width:520px">We spent years as a software development partner, deep in AI, mobile, web and data privacy work — always close to our customers' real needs. Now we're building for ourselves.</p>
+      <form style="display:flex;gap:0;max-width:440px;border-bottom:1px solid {{ emailBorderColor }};padding-bottom:10px;margin-top:12px" onsubmit="{{ handleSubmit }}">
+        <input type="email" value="{{ emailValue }}" onchange="{{ handleEmailChange }}" placeholder="Get the launch email" style="flex:1;border:none;background:transparent;font:400 17px 'Newsreader',serif;font-style:italic;color:#181614;outline:none" />
+        <button type="submit" style="background:none;border:none;font:500 14px 'Space Grotesk',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#181614;cursor:pointer;white-space:nowrap">Notify&nbsp;me →</button>
+      </form>
+      <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0;font:400 14px 'Public Sans',sans-serif;color:#b23a3a">Please enter a valid email address.</p>
+      </sc-if>
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0;font:400 14px 'Public Sans',sans-serif;color:#a0784f">Thanks — we'll email you the moment we launch.</p>
+      </sc-if>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:36px;flex:none">
+      <div style="display:flex;align-items:baseline;gap:36px">
+        <sc-for list="{{ countdownUnits }}" as="u" hint-placeholder-count="4">
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:center">
+            <div class="cd-num" style="font:400 56px/1 'Newsreader',serif;color:#181614">{{ u.value }}</div>
+            <div style="font:500 11px/1 'Space Grotesk',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#918c80">{{ u.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="height:1px;background:rgba(0,0,0,.1)"></div>
+      <p style="margin:0;font:400 15px/1.6 'Public Sans',sans-serif;color:#918c80;max-width:280px">Countdown to launch day — we'll share the full story with our list first.</p>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(0,0,0,.1);padding-top:24px;font:400 13px 'Public Sans',sans-serif;color:#918c80">
+    <span>© 2026 Laite.AI</span>
+    <div style="display:flex;align-items:center;gap:24px">
+      <a href="https://www.linkedin.com/company/laite-ai" target="_blank" rel="noopener" style="display:flex;align-items:center;color:#918c80" aria-label="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.58 5.6H.5V15.5h3.08V5.6ZM2.04 4.24c1.03 0 1.87-.84 1.87-1.87A1.87 1.87 0 0 0 2.04.5 1.87 1.87 0 0 0 .17 2.37c0 1.03.84 1.87 1.87 1.87ZM15.5 15.5v-5.43c0-2.66-1.42-3.9-3.32-3.9-1.53 0-2.21.84-2.59 1.43V5.6H6.51c.04.87 0 9.9 0 9.9h3.08v-5.53c0-.3.02-.59.11-.8.24-.6.79-1.22 1.71-1.22 1.21 0 1.69.92 1.69 2.27v5.28h3.08Z"/></svg>
+      </a>
+      <a href="https://github.com/laite-ai" target="_blank" rel="noopener" style="display:flex;align-items:center;color:#918c80" aria-label="GitHub">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { now: Date.now(), submitted: false, email: '', showError: false };
+
+  componentDidMount() {
+    this._timer = setInterval(() => this.setState({ now: Date.now() }), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._timer);
+  }
+
+  isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
+  handleEmailChange = (e) => {
+    this.setState({ email: e.target.value, showError: false });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (!this.isValidEmail(this.state.email)) {
+      this.setState({ showError: true, submitted: false });
+      return;
+    }
+    this.setState({ submitted: true, showError: false });
+  };
+
+  renderVals() {
+    const target = new Date('2026-09-01T09:00:00Z').getTime();
+    let diff = Math.max(0, target - this.state.now);
+    const day = 86400000, hr = 3600000, min = 60000, sec = 1000;
+    const days = Math.floor(diff / day);
+    const hours = Math.floor((diff % day) / hr);
+    const minutes = Math.floor((diff % hr) / min);
+    const seconds = Math.floor((diff % min) / sec);
+    const pad = (n) => String(n).padStart(2, '0');
+    const countdownUnits = [
+      { label: 'Days', value: pad(days) },
+      { label: 'Hours', value: pad(hours) },
+      { label: 'Min', value: pad(minutes) },
+      { label: 'Sec', value: pad(seconds) },
+    ];
+    return {
+      countdownUnits,
+      handleSubmit: this.handleSubmit,
+      handleEmailChange: this.handleEmailChange,
+      submitted: this.state.submitted,
+      emailValue: this.state.email,
+      showError: this.state.showError,
+      emailBorderColor: this.state.showError ? '#b23a3a' : '#181614',
+    };
+  }
+}
+
+</script>
+</body>
+</html>
